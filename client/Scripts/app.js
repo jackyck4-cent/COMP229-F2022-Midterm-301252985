@@ -117,3 +117,19 @@ $.fn.pageMe = function(opts){
     {pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:6}
     );
 })();
+
+
+//Delete checking
+function delCars()
+{
+    carname = document.getElementById("carname").value;
+    range1 = document.getElementById("range1").value;
+    range2 = document.getElementById("range2").value;
+
+    if ((carname != "" ) || (range1 != "" || range2 != "" ))
+    {
+        document.deleteform.submit();
+    }
+    else
+        alert("Either Carname or Price range have to be filled");
+}

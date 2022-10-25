@@ -3,3 +3,7 @@ body {
   padding-bottom: 70px;
   }
 
+
+  .deleteTable td{
+    padding:10px 5px;
+  }

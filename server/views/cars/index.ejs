@@ -8,7 +8,7 @@
       <!-- ------------------------ -->
       <!-- FIX THE ADD BUTTON BELOW -->
       <!-- ------------------------ -->
-      <a href="" class="btn btn-primary"
+      <a href="/cars/add" class="btn btn-primary"
         ><i class="fa fa-plus"></i> Add a car</a
       >
       <br />
@@ -37,6 +37,7 @@
                 <!-- ------------------------ -->
                 <!-- ADD the EDIT BUTTON HERE -->
                 <!-- ------------------------ -->
+                <a href="/cars/<%= cars[count]._id %>">edit</a>
               </td>
 
               
@@ -48,8 +49,28 @@
       <!-- ------------------------ -->
                 <!--FIX the DELETE BUTTON HERE -->
                 <!-- ------------------------ -->
-      <a href="" class="btn btn-warning btn-sm">
-        <i class="fas fa-trash"></i> Delete</a>
+      <hr />
+      <h5>Please fill in information to delete cars:</h5>
+      <form action="/cars/delete" name="deleteform">
+      <table class="deleteTable">
+      <tr>
+        <td>Carname</td>
+        <td><input type="text" id="carname" name="carname" /></td>
+      </tr>
+      <tr>
+        <td>Price range</td>
+        <td>From <input type="text" id="range1" name="range1" /> to <input type="text" id="range2" name="range2" /></td>
+      </tr>
+      <tr>
+        <td> <a href="javascript:;" onclick="delCars()" class="btn btn-warning btn-sm">
+          <i class="fas fa-trash"></i> Delete</a></td>
+        <td></td>
+      </tr>
+      </table>
+       
+       
+      </form>
+      
     </main>
       <div class="col-md-offset-1 col-md-10 text-center">
         <ul class="pagination pagination-lg pager" id="myPager"></ul>
