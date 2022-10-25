@@ -48,13 +48,51 @@ router.post("/add", (req, res, next) => {
 
     if (err)
     {
-        res.end(err)
+      return console.error(err);
     }
     else
     {
         res.redirect("/cars");
     }
 });
+});
+
+// GET - process the delete
+router.get("/delete", (req, res, next) => {
+  /*****************
+   * ADD CODE HERE *
+   *****************/
+   let carname = req.query.carname;
+   let range1 = req.query.range1;
+   let range2 = req.query.range2;
+
+   console.log("Cname"+carname+" "+range1+" "+range2);
+   let conditions = {};
+
+   if (range1 != "" && range2 != "" )
+   {
+      conditions.Price = {$gte : range1 , $lte : range2};
+   }
+   else if (range1 != "" )
+   {
+    conditions.Price = {$lte : range1 } ;
+   }
+   else if (range2 != "" )
+   {
+    conditions.Price = {$gte : range2} ;
+    
+   }
+
+   if (carname != "" )
+   {
+    conditions.Carname = carname
+      
+   }
+
+    car.deleteMany( conditions, (err) => {
+      res.redirect("/cars");
+    
+    });
 });
 
 // GET the Car Details page in order to edit an existing Car
@@ -82,18 +120,18 @@ router.post("/:id", (req, res, next) => {
    * ADD CODE HERE *
    *****************/
    let id = req.params.id;
-   let carobject = car({
+   let carobject = {
       Carname : req.body.Carname,
       Category : req.body.Category,
       Carmodel : req.body.Carmodel,
       Price : req.body.Price
-    })
+    }
 
-   car.updateOne( { _id: id }, carobject , (err , contact) => {
+   car.updateOne( { _id: id }, carobject , (err , item) => {
 
     if (err)
     {
-      res.end(err)
+      return console.error(err);
     }
     else
     {
@@ -103,11 +141,6 @@ router.post("/:id", (req, res, next) => {
   
 });
 
-// GET - process the delete
-router.get("/delete", (req, res, next) => {
-  /*****************
-   * ADD CODE HERE *
-   *****************/
-});
+
 
 module.exports = router;
