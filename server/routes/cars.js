@@ -44,7 +44,7 @@ router.post("/add", (req, res, next) => {
       Price : req.body.Price
   })
 
-  car.create(carobject , (err , contact) => {
+  car.create(carobject , (err , car) => {
 
     if (err)
     {
@@ -127,7 +127,7 @@ router.post("/:id", (req, res, next) => {
       Price : req.body.Price
     }
 
-   car.updateOne( { _id: id }, carobject , (err , item) => {
+   car.updateOne( { _id: id }, carobject , (err , car) => {
 
     if (err)
     {
